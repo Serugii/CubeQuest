@@ -1,5 +1,5 @@
 function App() {
-  return <h1>CubeQuest</h1>;
+  return <h1>CubeQuest, Learn React</h1>;
 }
 
 export default App;
