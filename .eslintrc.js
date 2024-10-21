@@ -22,6 +22,9 @@ const config = {
     ],
     /* https://github.com/import-js/eslint-plugin-import */
     settings: {
+        react: {
+            version: 'detect',
+        },
         'import/resolver': {
             node: {
                 extensions: ['.js', '.jsx'],
