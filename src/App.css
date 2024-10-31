@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background-color: #bae1ff;
+    font-family: 'Merriweather', sans-serif;
+}
+a {
+    text-decoration: none;
+}

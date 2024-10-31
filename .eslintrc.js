@@ -30,7 +30,7 @@ const config = {
                 extensions: ['.js', '.jsx'],
             },
             webpack: {
-                config: './config/webpack.dev.config.js',
+                config: './config/webpack.config.js',
             },
         },
     },
