@@ -1,0 +1,21 @@
+.imgDiv {
+    box-sizing: border-box;
+    display: flex;
+}
+
+.img {
+    max-height: 350px;
+    border-radius: 70px;
+    margin: 40px;
+}
+
+.imgDiv h2 {
+    text-align: center;
+}
+
+.mainDiv p {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}

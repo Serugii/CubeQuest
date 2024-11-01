@@ -9,3 +9,14 @@ body {
 a {
     text-decoration: none;
 }
+
+p,
+h1,
+h2,
+h3 {
+    text-indent: 40px;
+}
+
+p {
+    font-size: 18px;
+}
