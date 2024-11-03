@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 import avatar from '../../assets/images/Avatar.jpg';
 import edit from '../../assets/images/Edit.jpg';
@@ -9,9 +10,28 @@ import styles from './styles.css';
 
 const ProfilePage = ({ onLogout }) => {
     const navigate = useNavigate();
+    const [userData, setUserData] = useState({ username: '', email: '' });
+
+    useEffect(() => {
+        const db = getDatabase();
+        const userId = localStorage.getItem('userId');
+
+        if (userId) {
+            const userRef = ref(db, 'users/' + userId);
+            onValue(userRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    setUserData({ username: data.username, email: data.email });
+                }
+            });
+        } else {
+            console.error('User ID not found in localStorage.');
+        }
+    }, []);
 
     const handleLogout = () => {
         onLogout();
+        localStorage.removeItem('userId');
         navigate('/login');
     };
 
@@ -21,7 +41,7 @@ const ProfilePage = ({ onLogout }) => {
                 <img className={styles.userImg} src={avatar} alt="My avatar" />
                 <div>
                     <h2 className={styles.userName}>
-                        User name <img className={styles.toolImg} src={edit} alt="Edit" />
+                        {userData.username || "Ваше ім'я"} <img className={styles.toolImg} src={edit} alt="Edit" />
                     </h2>
                     <img className={styles.toolImg} src={rank} alt="My rank" />
                     <div className={styles.userText}>
@@ -31,7 +51,6 @@ const ProfilePage = ({ onLogout }) => {
                             <p>0 підписників</p>
                         </div>
                     </div>
-
                     <div className={styles.divButton}>
                         <button className={styles.button}>Підписатися</button>
                         <button className={styles.button}>Відправити виклик</button>
@@ -42,14 +61,13 @@ const ProfilePage = ({ onLogout }) => {
                     </div>
                 </div>
             </div>
-
             <div className={styles.divFooter}>
                 <div className={styles.userInfo}>
                     <div className={styles.borderDiv1}>
                         <img className={styles.editInfo} src={edit} alt="Edit" />
                         <h3>Контакти</h3>
                         <p>Електронна пошта</p>
-                        <p className={styles.userContactData}>your.email@rubik.com</p>
+                        <p className={styles.userContactData}>{userData.email || 'Ваша електронна пошта'}</p>
                         <p>Телефон</p>
                         <p className={styles.userContactData}>Номер вашого телефону</p>
                     </div>

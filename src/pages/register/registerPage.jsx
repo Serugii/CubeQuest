@@ -1,9 +1,11 @@
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import loginImage from '../../assets/images/LoginRegister.png';
 import styles from './styles.css';
+import { app } from '../../../firebaseConfig';
 
 export default function Register({ toggleLogin }) {
     const [username, setUsername] = useState('');
@@ -13,6 +15,7 @@ export default function Register({ toggleLogin }) {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const auth = getAuth(app);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -25,26 +28,16 @@ export default function Register({ toggleLogin }) {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, email, password }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                alert('Користувача успішно зареєстровано!');
-                localStorage.setItem('token', data.token);
+            const response = await createUserWithEmailAndPassword(auth, email, password);
+            if (response.user) {
+                localStorage.setItem('token', response.user.accessToken);
+                localStorage.setItem('userId', response.user.uid);
                 toggleLogin(true);
                 navigate('/profile');
-            } else {
-                alert(`Помилка: ${data.message}`);
+                alert('Користувача успішно зареєстровано!');
             }
         } catch (error) {
-            alert('Помилка під час реєстрації: ' + error.message);
+            alert(`Помилка: ${error.message}`);
         } finally {
             setLoading(false);
         }

@@ -1,10 +1,11 @@
-import axios from 'axios';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import loginImage from '../../assets/images/LoginRegister.png';
 import styles from './styles.css';
+import { app } from '../../../firebaseConfig';
 
 export default function Login({ toggleLogin }) {
     const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ export default function Login({ toggleLogin }) {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
+    const auth = getAuth(app);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -19,18 +21,16 @@ export default function Login({ toggleLogin }) {
         setErrorMessage('');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', {
-                email,
-                password,
-            });
+            const response = await signInWithEmailAndPassword(auth, email, password);
+            if (response.user) {
+                localStorage.setItem('token', response.user.accessToken);
+                localStorage.setItem('userId', response.user.uid);
 
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
                 toggleLogin(true);
                 navigate('/profile');
             }
         } catch (error) {
-            setErrorMessage(error.response?.data?.message || 'Щось пішло не так!');
+            setErrorMessage(error.message || 'Щось пішло не так!');
         } finally {
             setLoading(false);
         }

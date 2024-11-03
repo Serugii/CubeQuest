@@ -1,5 +1,4 @@
 import './App.css';
-
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 
@@ -39,7 +38,10 @@ const App = () => {
                             path="/login"
                             element={isLoggedIn ? <Navigate to="/profile" /> : <Login toggleLogin={toggleLogin} />}
                         />
-                        <Route path="/register" element={isLoggedIn ? <Navigate to="/profile" /> : <Register />} />
+                        <Route
+                            path="/register"
+                            element={isLoggedIn ? <Navigate to="/profile" /> : <Register toggleLogin={toggleLogin} />}
+                        />
                         <Route path="/profile" element={<ProfilePage onLogout={() => toggleLogin(false)} />} />
                         <Route path="/play" element={<Play />} />
                         <Route path="*" element={<NotFound />} />
