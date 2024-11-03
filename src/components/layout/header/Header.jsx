@@ -53,7 +53,7 @@ export default function Header({ isLoggedIn }) {
             <NavLink
                 to={isLoggedIn ? '/profile' : '/login'}
                 className={({ isActive }) =>
-                    isActive || location.pathname === '/register' || location.pathname === '/login'
+                    isActive || ['/register', '/login'].includes(location.pathname)
                         ? `${styles.link} ${styles.active}`
                         : styles.link
                 }

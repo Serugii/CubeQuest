@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import { app } from '../../../firebaseConfig';
 import loginImage from '../../assets/images/LoginRegister.png';
 import styles from './styles.css';
-import { app } from '../../../firebaseConfig';
 
 export default function Login({ toggleLogin }) {
     const [email, setEmail] = useState('');
@@ -21,14 +21,12 @@ export default function Login({ toggleLogin }) {
         setErrorMessage('');
 
         try {
-            const response = await signInWithEmailAndPassword(auth, email, password);
-            if (response.user) {
-                localStorage.setItem('token', response.user.accessToken);
-                localStorage.setItem('userId', response.user.uid);
+            const { user } = await signInWithEmailAndPassword(auth, email, password);
+            localStorage.setItem('token', user.accessToken);
+            localStorage.setItem('userId', user.uid);
 
-                toggleLogin(true);
-                navigate('/profile');
-            }
+            toggleLogin(true);
+            navigate('/profile');
         } catch (error) {
             setErrorMessage(error.message || 'Щось пішло не так!');
         } finally {

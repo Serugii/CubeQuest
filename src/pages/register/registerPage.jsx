@@ -1,11 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { app } from '../../../firebaseConfig';
 import loginImage from '../../assets/images/LoginRegister.png';
 import styles from './styles.css';
-import { app } from '../../../firebaseConfig';
 
 export default function Register({ toggleLogin }) {
     const [username, setUsername] = useState('');

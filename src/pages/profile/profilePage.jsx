@@ -1,7 +1,7 @@
+import { getDatabase, onValue, ref } from 'firebase/database';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getDatabase, ref, onValue } from 'firebase/database';
 
 import avatar from '../../assets/images/Avatar.jpg';
 import edit from '../../assets/images/Edit.jpg';
@@ -13,12 +13,12 @@ const ProfilePage = ({ onLogout }) => {
     const [userData, setUserData] = useState({ username: '', email: '' });
 
     useEffect(() => {
-        const db = getDatabase();
+        const database = getDatabase();
         const userId = localStorage.getItem('userId');
 
         if (userId) {
-            const userRef = ref(db, 'users/' + userId);
-            onValue(userRef, (snapshot) => {
+            const userReference = ref(database, 'users/' + userId);
+            onValue(userReference, (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
                     setUserData({ username: data.username, email: data.email });

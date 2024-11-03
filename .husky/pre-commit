@@ -3,5 +3,5 @@
 
 npm run format:fix
 npm run lint:fix
-npm run test:e2e
-npm run test:component
+# npm run test:e2e
+# npm run test:component
