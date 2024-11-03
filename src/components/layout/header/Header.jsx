@@ -24,6 +24,13 @@ export default function Header({ isLoggedIn }) {
         }
     };
 
+    const handleChallengesClick = (event) => {
+        if (isLoggedIn) {
+            event.preventDefault();
+            navigate('/play');
+        }
+    };
+
     return (
         <div className={styles.header}>
             <img src={logo} alt="CubeQuest" style={{ maxWidth: '100px', height: 'auto' }} />
@@ -37,6 +44,7 @@ export default function Header({ isLoggedIn }) {
                             ? `${styles.link} ${styles.active}`
                             : styles.link
                     }
+                    onClick={link.path === '/challenges' ? handleChallengesClick : undefined}
                 >
                     {link.label}
                 </NavLink>
@@ -45,16 +53,13 @@ export default function Header({ isLoggedIn }) {
             <NavLink
                 to={isLoggedIn ? '/profile' : '/login'}
                 className={({ isActive }) =>
-                    isActive ||
-                    location.pathname === '/login' ||
-                    location.pathname === '/register' ||
-                    location.pathname === '/profile'
+                    isActive || location.pathname === '/register' || location.pathname === '/login'
                         ? `${styles.link} ${styles.active}`
                         : styles.link
                 }
                 onClick={handleAuthClick}
             >
-                {isLoggedIn ? 'Профіль' : 'Увійти/Реєстрація'}
+                {isLoggedIn ? 'Профіль' : 'Увійти/Зареєструватись'}
             </NavLink>
         </div>
     );

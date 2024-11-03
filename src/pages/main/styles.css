@@ -1,4 +1,7 @@
 .mainDiv {
+    padding: 40px;
+}
+.infoDiv {
     gap: 10px;
     display: flex;
 }

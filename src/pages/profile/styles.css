@@ -1,0 +1,118 @@
+.userDiv {
+    height: 270px;
+    border-bottom: solid 24px #bae1ff;
+    display: flex;
+}
+
+.userInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userText {
+    display: flex;
+}
+
+.subs {
+    display: flex;
+    margin-left: 300px;
+    color: #38d1ff;
+}
+
+.userInfo > div {
+    background-color: white;
+    width: 33vw;
+    height: 55vh;
+    border-bottom: solid 16px #bae1ff;
+}
+
+.editInfo {
+    float: right;
+    margin: 10px;
+}
+
+.userInfo h3 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.borderDiv1 {
+    width: 50vw;
+    border-right: solid 12px #bae1ff;
+}
+
+.borderDiv2 {
+    width: 50vw;
+    border-left: solid 12px #bae1ff;
+    border-right: solid 12px #bae1ff;
+}
+
+.borderDiv3 {
+    width: 50vw;
+    border-left: solid 12px #bae1ff;
+}
+
+.userContactData {
+    color: #38d1ff;
+    font-size: 16px;
+}
+
+.userInfoData {
+    color: rgb(100, 100, 100);
+    font-size: 16px;
+}
+
+.userInfoData > span {
+    color: #ffba40;
+}
+
+.divFooter {
+    background-color: #bae1ff;
+    border-bottom: solid 5vh #bae1ff;
+}
+
+.userImg {
+    margin: 20px;
+    height: 200px;
+}
+
+.divButton {
+    text-align: center;
+    justify-content: space-between;
+    display: flex;
+    margin: auto 40px;
+}
+
+.button {
+    height: 40px;
+    width: 210px;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #38a7ff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #38a7ff;
+    border-radius: 20px;
+    transition:
+        color 0.3s,
+        background-color 0.3s;
+}
+
+.button:hover {
+    color: #fff;
+    background-color: #38a7ff;
+}
+
+.userName {
+    margin-top: 18px;
+}
+
+.toolImg {
+    margin-left: 30px;
+}
+
+.userDiv > div {
+    width: 100%;
+    margin-right: 30px;
+}

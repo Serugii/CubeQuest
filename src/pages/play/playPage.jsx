@@ -6,9 +6,9 @@ import styles from './styles.css';
 
 const formatTime = (value) => value.toString().padStart(2, '0');
 
-const ProfilePage = () => {
+const PlayPage = () => {
     const [milliseconds, setMilliseconds] = useState(0);
-    const intervalReference = useRef(undefined);
+    const intervalReference = useRef();
 
     const startTimer = () => {
         if (intervalReference.current) return;
@@ -20,7 +20,7 @@ const ProfilePage = () => {
     };
 
     const stopTimer = () => {
-        clearInterval(intervalReference.current);
+        clearTimeout(intervalReference.current);
         intervalReference.current = undefined;
     };
 
@@ -59,4 +59,4 @@ const ProfilePage = () => {
     );
 };
 
-export default ProfilePage;
+export default PlayPage;

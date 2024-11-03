@@ -50,23 +50,7 @@ input {
     font-family: 'Merriweather', sans-serif;
     color: rgb(114, 114, 114);
 }
-.formCheckbox {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.formCheckbox label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.formCheckbox a {
-    text-align: center;
-    color: #38a7ff;
-    padding: 20px;
-    font-size: 12px;
-}
+
 .loginBtn {
     background-color: white;
     font-size: 1rem;

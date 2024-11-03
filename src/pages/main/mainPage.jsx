@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -5,10 +6,10 @@ import introductionCubik from '../../assets/images/MainPage.png';
 import RubikCollection from '../../assets/images/RubikCollection.jpg';
 import styles from './styles.css';
 
-export default function Main() {
+export default function Main({ isLoggedIn }) {
     return (
-        <div>
-            <div className={styles.mainDiv}>
+        <div className={styles.mainDiv}>
+            <div className={styles.infoDiv}>
                 <div>
                     <h2>Ласкаво просимо в світ головоломок та пригод! </h2>
                     <p>
@@ -18,7 +19,7 @@ export default function Main() {
                     <img className={styles.cubik} src={introductionCubik} alt="Introduction Cubik" />
                     <div className={styles.buttons}>
                         <NavLink
-                            to="/login"
+                            to={isLoggedIn ? '/play' : '/login'}
                             className={({ isActive }) => (isActive ? `${styles.a} ${styles.active}` : styles.a)}
                         >
                             <strong>Розпочати</strong>
@@ -43,3 +44,7 @@ export default function Main() {
         </div>
     );
 }
+
+Main.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+};

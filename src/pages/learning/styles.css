@@ -1,0 +1,13 @@
+.mainDivLearning {
+    margin: 60px;
+}
+
+.mainDivLearning > img {
+    display: block;
+    margin: auto;
+    margin: 40px auto;
+}
+
+.bigImg {
+    height: 500px;
+}
